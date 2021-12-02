@@ -8,18 +8,20 @@ import { useSnackbar } from "notistack";
 
 // A component that displays error messages
 function Messages() {
-    const { enqueueSnackbar } = useSnackbar();
-    const messages = useSelector<IReduxState, MessagesState>(state => state.messages);
-    const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const messages = useSelector<IReduxState, MessagesState>(
+    (state) => state.messages
+  );
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (messages.message) {
-            enqueueSnackbar(JSON.stringify(messages.message));
-            dispatch(close());
-        }
-    }, [messages.message]);
+  useEffect(() => {
+    if (messages.message) {
+      enqueueSnackbar(JSON.stringify(messages.message));
+      dispatch(close());
+    }
+  }, [messages.message]);
 
-    return <div></div>;
+  return <div></div>;
 }
 
 export default Messages;

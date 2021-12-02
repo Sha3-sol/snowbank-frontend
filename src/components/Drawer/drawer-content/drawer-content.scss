@@ -3,7 +3,7 @@
   min-width: 280px;
   display: flex;
   flex-direction: column;
-  background: rgba(0, 1, 40, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-right: 1px solid #30363a;
 
   .branding-header {
@@ -13,14 +13,15 @@
     margin: 28px 0 63px 20px;
 
     img {
-      max-height: 32px;
+      max-height: 75px;
+
     }
 
     .wallet-link {
       margin: 10px;
   
       p{
-        color: #FFFFFF;
+        color: #253449;
         font-family: Mono;
         font-weight: 400;
         font-size: 14px;
@@ -60,7 +61,7 @@
           p{
             font-weight: 500;
             font-size: 16px;
-            color: #FFFFFF;
+            color: #253449;
             font-family: Montserrat Medium;
             font-feature-settings: "ss01";
           }
@@ -72,7 +73,7 @@
             display: block;
             margin-left: 12px;
             margin-top: 2px;
-            color: #b5b9bb;
+            color: #253449;
           }
         }
       }
@@ -107,7 +108,7 @@
           font-family: Montserrat;
           font-size: 14px;
           line-height: 18px;
-          color: #b5b9bb;
+          color: #253449;
           font-feature-settings: "ss09", "ss11";
         }
         
@@ -147,7 +148,7 @@
         font-weight: 600;
         font-size: 16px;
         line-height: 20px;
-        color: #FFFFFF;
+        color: #253449;
       }
     }
   }
@@ -176,13 +177,13 @@
     z-index: 7;
 
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-      background: rgba(36, 39, 41, 0.1);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(40px);
     }
   
     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-      background: #181B1C;
+      background: #ffffff;
     }
   }
 }

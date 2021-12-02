@@ -7,14 +7,15 @@ import pendingTransactionsReducer from "./slices/pending-txns-slice";
 import messagesReducer from "./slices/messages-slice";
 
 const store = configureStore({
-    reducer: {
-        account: accountReducer,
-        bonding: bondingReducer,
-        app: appReducer,
-        pendingTransactions: pendingTransactionsReducer,
-        messages: messagesReducer,
-    },
-    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+  reducer: {
+    account: accountReducer,
+    bonding: bondingReducer,
+    app: appReducer,
+    pendingTransactions: pendingTransactionsReducer,
+    messages: messagesReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

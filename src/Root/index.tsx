@@ -5,19 +5,19 @@ import { loadTokenPrices } from "../helpers";
 import Loading from "../components/Loader";
 
 function Root() {
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        loadTokenPrices().then(() => setLoading(false));
-    }, []);
+  useEffect(() => {
+    loadTokenPrices().then(() => setLoading(false));
+  }, []);
 
-    if (loading) return <Loading />;
+  if (loading) return <Loading />;
 
-    return (
-        <HashRouter>
-            <App />
-        </HashRouter>
-    );
+  return (
+    <HashRouter>
+      <App />
+    </HashRouter>
+  );
 }
 
 export default Root;

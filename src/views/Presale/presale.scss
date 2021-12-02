@@ -1,15 +1,8 @@
 .stake-view{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid #30363a;
-
   width: 89%;
   max-width: 833px;
-  min-height: 20%;
   margin: auto;
+  border-radius: 15px;
 
   .stake-card{
     position: relative;
@@ -22,11 +15,9 @@
   
     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-      background: #253449;
+      background: rgba(0, 1, 40, 0.9);
     }
 
-    border-radius: 4px;
-    border: 1px solid #30363a;
     padding: 20px;
     width: 100%;
 
@@ -147,7 +138,7 @@
               color: #253449;
             }
 
-            border-bottom: 1px solid #253449;;
+            border-bottom: 1px solid #FFFFFF;;
           }
         }
 
@@ -300,4 +291,29 @@
   .stake-view{
     width: 100%;
   }
+}
+
+.presale-card {
+  width: 100%;
+  border: 1px solid #253449;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.presale-stack {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.presale-view {
+  display: flex;
+  flex-direction: column;
+  max-width: 833px;
+  justify-content: center;
+  margin: auto;
+
 }

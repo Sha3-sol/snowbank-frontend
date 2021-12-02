@@ -8,7 +8,7 @@
         z-index: 2;
 
         @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-            background: rgba(0, 1, 40, 0.5);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(100px);
         }
 
@@ -53,14 +53,14 @@
                 font-family: Montserrat Medium;
                 font-weight: 500;
                 font-size: 24px;
-                color: #ffffff;
+                color: #253449;
                 margin-bottom: 4px;
                 font-feature-settings: "ss01";
             }
             .snowglobe-card-header-subtitle {
                 font-family: Mono;
                 font-weight: 400;
-                color: #ffffff;
+                color: #253449;
                 text-transform: uppercase;
                 font-size: 12px;
                 letter-spacing: 1px;
@@ -108,7 +108,7 @@
                     font-family: Montserrat;
                     font-weight: 400;
                     font-size: 16px;
-                    color: #919fa6;
+                    color: #253449;
                     padding-bottom: 6px;
                     font-feature-settings: "ss01";
                 }
@@ -117,7 +117,7 @@
                     font-family: Montserrat SemiBold;
                     font-weight: 500;
                     font-size: 24px;
-                    color: #ffffff;
+                    color: #253449;
                     font-feature-settings: "ss09", "ss11";
                 }
             }
@@ -183,7 +183,7 @@
 
                     .snowglobe-card-action-stage-btn.active {
                         p {
-                            color: #ffffff;
+                            color: #253449;
                         }
 
                         border-bottom: 1px solid #ffffff;
@@ -222,7 +222,7 @@
                     .snowglobe-card-action-label {
                         font-family: Mono;
                         font-weight: 400;
-                        color: #ffffff;
+                        color: #253449;
                         font-size: 12px;
                         letter-spacing: 1px;
                         margin-bottom: 6px;
@@ -256,7 +256,7 @@
                             p {
                                 font-family: Mono;
                                 font-weight: 400;
-                                color: #ffffff;
+                                color: #253449;
                                 text-transform: uppercase;
                                 font-size: 16px;
                                 letter-spacing: 1px;
@@ -269,18 +269,18 @@
                         margin-left: 10px;
 
                         .snowglobe-card-tab-panel-btn {
-                            background: #d0c4ff;
+                            background: #ffffff;
                             border-radius: 4px;
                             padding: 14px 0px;
                             cursor: pointer;
                             text-align: center;
-                            border: 1px solid #441d91;
+                            border: 1px solid #253449;
 
                             p {
                                 font-family: Montserrat Medium;
                                 font-weight: 500;
                                 font-size: 16px;
-                                color: #441d91;
+                                color: #253449;
                             }
                         }
                     }
@@ -320,13 +320,13 @@
         font-style: normal;
         font-weight: 500;
         font-size: 14px;
-        color: #ffffff;
+        color: #253449;
     }
     .data-row-value {
         font-family: Montserrat;
         font-size: 14px;
         line-height: 17px;
-        color: #ffffff;
+        color: #253449;
         font-feature-settings: "ss09", "ss11";
     }
 }

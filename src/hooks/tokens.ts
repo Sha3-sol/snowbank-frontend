@@ -11,29 +11,38 @@ export interface IAllTokenData extends IToken, IUserTokenDetails {}
 const initialTokenArray = allTokens;
 
 function useTokens() {
-    const accountLoading = useSelector<IReduxState, boolean>(state => state.account.loading);
-    const accountTokensState = useSelector<IReduxState, { [key: string]: IUserTokenDetails }>(state => state.account.tokens);
+  const accountLoading = useSelector<IReduxState, boolean>(
+    (state) => state.account.loading
+  );
+  const accountTokensState = useSelector<
+    IReduxState,
+    { [key: string]: IUserTokenDetails }
+  >((state) => state.account.tokens);
+  //@ts-ignore
+  const [tokens, setTokens] = useState<IAllTokenData[]>(initialTokenArray);
+
+  useEffect(() => {
+    let tokenDetails: IAllTokenData[];
     //@ts-ignore
-    const [tokens, setTokens] = useState<IAllTokenData[]>(initialTokenArray);
+    tokenDetails = allTokens.flatMap((token) => {
+      if (accountTokensState[token.name]) {
+        return Object.assign(token, accountTokensState[token.name]);
+      }
+      return token;
+    });
 
-    useEffect(() => {
-        let tokenDetails: IAllTokenData[];
-        //@ts-ignore
-        tokenDetails = allTokens.flatMap(token => {
-            if (accountTokensState[token.name]) {
-                return Object.assign(token, accountTokensState[token.name]);
-            }
-            return token;
-        });
+    const mostProfitableBonds = tokenDetails.concat().sort((a, b) => {
+      return a["balance"] > b["balance"]
+        ? -1
+        : b["balance"] > a["balance"]
+        ? 1
+        : 0;
+    });
 
-        const mostProfitableBonds = tokenDetails.concat().sort((a, b) => {
-            return a["balance"] > b["balance"] ? -1 : b["balance"] > a["balance"] ? 1 : 0;
-        });
+    setTokens(mostProfitableBonds);
+  }, [accountTokensState, accountLoading]);
 
-        setTokens(mostProfitableBonds);
-    }, [accountTokensState, accountLoading]);
-
-    return { tokens, loading: accountLoading };
+  return { tokens, loading: accountLoading };
 }
 
 export default useTokens;

@@ -3,10 +3,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #30363a;
 
   width: 89%;
   max-width: 833px;
+  min-height: 20%;
   margin: auto;
 
   .choose-bond-view-card{
@@ -19,13 +21,13 @@
     z-index: 2;
     
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-      background: rgba(0, 1, 40, 0.5);
+      background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(100px);
     }
   
     /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-      background: rgba(0, 1, 40, 0.9);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     .choose-bond-view-card-header{
@@ -33,7 +35,7 @@
         font-family: Montserrat Medium;
         font-weight: 500;
         font-size: 24px;
-        color: #FFFFFF;
+        color: #253449;
         margin-bottom: 4px;
         font-feature-settings: "ss01";
         padding: 8px;
@@ -47,7 +49,7 @@
         font-family: Montserrat;
         font-weight: 400;
         font-size: 16px;
-        color: #919fa6;
+        color: #253449;
         padding-bottom: 6px;
         font-feature-settings: "ss01";
       }
@@ -56,7 +58,7 @@
         font-family: Montserrat SemiBold;
         font-weight: 500;
         font-size: 24px;
-        color: #FFFFFF;
+        color: #253449;
         font-feature-settings: "ss09", "ss11";
       }
     }
@@ -65,7 +67,7 @@
       .choose-bond-view-card-table-title{
         font-family: Mono;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #253449;
         text-transform: uppercase;
         font-size: 12px;
         letter-spacing: 1px;
@@ -78,7 +80,7 @@
 
     .bond-data-card {
       margin: auto !important;
-      background: rgba(0, 1, 40, 0.5);
+      background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(100px);
       border-radius: 10px;
       padding: 20px;
@@ -135,7 +137,7 @@
     font-family: Montserrat Medium;
     font-weight: 500;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #253449;
     font-feature-settings: "ss09", "ss11";
   }
 
