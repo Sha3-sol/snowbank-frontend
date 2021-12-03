@@ -7,9 +7,14 @@ import { IPendingTxn } from "../../../store/slices/pending-txns-slice";
 import "./connect-menu.scss";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { colors } from "@material-ui/core";
+import { changeStake } from "src/store/slices/stake-thunk";
+import { getAccountState, getBalances } from "src/store/slices/account-slice";
 
 function ConnectMenu() {
   const {
+    address,
+    provider,
+    chainID,
     connect,
     disconnect,
     connected,

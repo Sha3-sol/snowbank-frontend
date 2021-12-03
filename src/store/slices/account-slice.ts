@@ -32,6 +32,8 @@ interface IAccountBalances {
   balances: {
     ssb: string;
     sb: string;
+    MIM: string;
+    aKNOX: string;
   };
 }
 
@@ -43,7 +45,7 @@ export const getBalances = createAsyncThunk(
     provider,
   }: IGetBalances): Promise<IAccountBalances> => {
     const addresses = getAddresses(networkID);
-
+    console.log("je suis appelé");
     const ssbContract = new ethers.Contract(
       addresses.SSB_ADDRESS,
       MemoTokenContract,
@@ -57,10 +59,28 @@ export const getBalances = createAsyncThunk(
     );
     const sbBalance = await sbContract.balanceOf(address);
 
+    const MIMContract = new ethers.Contract(
+      addresses.MIM_ADDRESS,
+      TimeTokenContract,
+      provider
+    );
+    console.log(MIMContract);
+    const MIMBalance = await MIMContract.balanceOf(address);
+    console.log(MIMBalance);
+
+    const aKNOXContract = new ethers.Contract(
+      addresses.AKNOX_ADDRESS,
+      TimeTokenContract,
+      provider
+    );
+    const aKNOXBalance = await aKNOXContract.balanceOf(address);
+
     return {
       balances: {
         ssb: ethers.utils.formatUnits(ssbBalance, "gwei"),
         sb: ethers.utils.formatUnits(sbBalance, "gwei"),
+        MIM: ethers.utils.formatUnits(MIMBalance, "gwei"),
+        aKNOX: ethers.utils.formatUnits(aKNOXBalance, "gwei"),
       },
     };
   }
@@ -291,6 +311,8 @@ export interface IAccountSlice {
   staking: {
     sb: number;
     ssb: number;
+    aKNOX: number;
+    MIM: number;
   };
   tokens: { [key: string]: IUserTokenDetails };
 }
@@ -299,7 +321,7 @@ const initialState: IAccountSlice = {
   loading: true,
   bonds: {},
   balances: { ssb: "", sb: "", aKNOX: "", MIM: "" },
-  staking: { sb: 0, ssb: 0 },
+  staking: { sb: 0, ssb: 0, aKNOX: 0, MIM: 0 },
   tokens: {},
 };
 
@@ -322,7 +344,7 @@ const accountSlice = createSlice({
       })
       .addCase(loadAccountDetails.rejected, (state, { error }) => {
         state.loading = false;
-        console.log(error);
+        //console.log(error);
       })
       .addCase(getBalances.pending, (state) => {
         state.loading = true;
@@ -333,7 +355,7 @@ const accountSlice = createSlice({
       })
       .addCase(getBalances.rejected, (state, { error }) => {
         state.loading = false;
-        console.log(error);
+        //console.log(error);
       })
       .addCase(calculateUserBondDetails.pending, (state, action) => {
         state.loading = true;
@@ -346,7 +368,7 @@ const accountSlice = createSlice({
       })
       .addCase(calculateUserBondDetails.rejected, (state, { error }) => {
         state.loading = false;
-        console.log(error);
+        //console.log(error);
       })
       .addCase(calculateUserTokenDetails.pending, (state, action) => {
         state.loading = true;
@@ -359,7 +381,7 @@ const accountSlice = createSlice({
       })
       .addCase(calculateUserTokenDetails.rejected, (state, { error }) => {
         state.loading = false;
-        console.log(error);
+        //console.log(error);
       });
   },
 });

@@ -80,7 +80,8 @@ function Presale() {
 
   const setMax = () => {
     if (view === 0) {
-      setQuantity(parseInt(MIMBalance) >= 1500 ? "1500" : MIMBalance);
+      setQuantity("1500");
+      //setQuantity(parseInt(MIMBalance) >= 1500 ? "1500" : MIMBalance);
     } else {
       setQuantity(ssbBalance);
     }
@@ -231,6 +232,7 @@ function Presale() {
                 endAdornment={
                   <InputAdornment position="end">
                     <div
+                      style={{ cursor: "pointer" }}
                       onClick={setMax}
                       className="stake-card-action-input-btn"
                     >
