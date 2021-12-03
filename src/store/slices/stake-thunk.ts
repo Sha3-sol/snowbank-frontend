@@ -6,6 +6,7 @@ import {
   MemoTokenContract,
   StakingContract,
   MimTokenContract,
+  PresaleContract,
 } from "../../abi";
 import {
   clearPendingTxn,
@@ -158,12 +159,20 @@ export const changeStake = createAsyncThunk(
       return;
     }
     const addresses = getAddresses(networkID);
+    console.log(addresses.PRESALE_ADDRESS);
     const signer = provider.getSigner();
+    console.log(signer);
     const staking = new ethers.Contract(
       addresses.STAKING_ADDRESS,
       StakingContract,
       signer
     );
+    const buying = new ethers.Contract(
+      addresses.PRESALE_ADDRESS,
+      PresaleContract,
+      signer
+    );
+    console.log(buying);
     const stakingHelper = new ethers.Contract(
       addresses.STAKING_HELPER_ADDRESS,
       StakingHelperContract,
@@ -181,6 +190,14 @@ export const changeStake = createAsyncThunk(
           address,
           { gasPrice }
         );
+      } else if (action === "buy") {
+        console.log("teeeeeeeeest");
+        stakeTx = await buying.buySomeToken(
+          ethers.utils.parseUnits(value, "gwei"),
+          true,
+          { gasPrice }
+        );
+        console.log(stakeTx);
       } else {
         stakeTx = await staking.unstake(
           ethers.utils.parseUnits(value, "gwei"),

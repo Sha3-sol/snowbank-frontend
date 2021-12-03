@@ -106,6 +106,7 @@ function Presale() {
         })
       );
     } else {
+      console.log("teeest");
       await dispatch(
         changeStake({
           address,
