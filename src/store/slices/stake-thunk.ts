@@ -191,13 +191,9 @@ export const changeStake = createAsyncThunk(
           { gasPrice }
         );
       } else if (action === "buy") {
-        console.log("teeeeeeeeest");
         stakeTx = await buying.buySomeToken(
-          ethers.utils.parseUnits(value, "gwei"),
-          true,
-          { gasPrice }
+          ethers.utils.parseUnits(value, "gwei")
         );
-        console.log(stakeTx);
       } else {
         stakeTx = await staking.unstake(
           ethers.utils.parseUnits(value, "gwei"),

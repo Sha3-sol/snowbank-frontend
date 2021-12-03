@@ -143,7 +143,7 @@ function Stake() {
           >
             <Grid item>
               <div className="stake-card-header">
-                <p className="stake-card-header-title">Stake (3,3)</p>
+                <p className="stake-card-header-title">Stake 🏦</p>
                 <RebaseTimer />
               </div>
             </Grid>
@@ -192,7 +192,7 @@ function Stake() {
                       <p className="stake-card-metrics-title">Current Index</p>
                       <p className="stake-card-metrics-value">
                         {currentIndex ? (
-                          <>{trim(Number(currentIndex), 2)} SB</>
+                          <>{trim(Number(currentIndex), 2)} KNOX</>
                         ) : (
                           <Skeleton width="150px" />
                         )}
@@ -213,7 +213,7 @@ function Stake() {
                     <p>Connect Wallet</p>
                   </div>
                   <p className="stake-card-wallet-desc-text">
-                    Connect your wallet to stake SB tokens!
+                    Connect your wallet to stake KNOX tokens!
                   </p>
                 </div>
               )}
@@ -261,7 +261,7 @@ function Stake() {
 
                       {view === 0 && (
                         <div className="stake-card-tab-panel">
-                          {address && hasAllowance("sb") ? (
+                          {address && hasAllowance("KNOX") ? (
                             <div
                               className="stake-card-tab-panel-btn"
                               onClick={() => {
@@ -276,7 +276,7 @@ function Stake() {
                                 {txnButtonText(
                                   pendingTransactions,
                                   "staking",
-                                  "Stake SB"
+                                  "Stake KNOX"
                                 )}
                               </p>
                             </div>
@@ -291,7 +291,7 @@ function Stake() {
                                   )
                                 )
                                   return;
-                                onSeekApproval("sb");
+                                onSeekApproval("KNOX");
                               }}
                             >
                               <p>
@@ -308,7 +308,7 @@ function Stake() {
 
                       {view === 1 && (
                         <div className="stake-card-tab-panel">
-                          {address && hasAllowance("ssb") ? (
+                          {address && hasAllowance("sKNOX") ? (
                             <div
                               className="stake-card-tab-panel-btn"
                               onClick={() => {
@@ -323,7 +323,7 @@ function Stake() {
                                 {txnButtonText(
                                   pendingTransactions,
                                   "unstaking",
-                                  "Unstake SB"
+                                  "Unstake KNOX"
                                 )}
                               </p>
                             </div>
@@ -338,7 +338,7 @@ function Stake() {
                                   )
                                 )
                                   return;
-                                onSeekApproval("ssb");
+                                onSeekApproval("sKNOX");
                               }}
                             >
                               <p>
@@ -356,8 +356,8 @@ function Stake() {
 
                     <div className="stake-card-action-help-text">
                       {address &&
-                        ((!hasAllowance("sb") && view === 0) ||
-                          (!hasAllowance("ssb") && view === 1)) && (
+                        ((!hasAllowance("KNOX") && view === 0) ||
+                          (!hasAllowance("sKNOX") && view === 1)) && (
                           <p>
                             Note: The "Approve" transaction is only needed when
                             staking/unstaking for the first time; subsequent
@@ -375,7 +375,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{trim(Number(sbBalance), 4)} SB</>
+                          <>{trim(Number(sbBalance), 4)} KNOX</>
                         )}
                       </p>
                     </div>
@@ -386,7 +386,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{trimmedMemoBalance} sSB</>
+                          <>{trimmedMemoBalance} sKNOX</>
                         )}
                       </p>
                     </div>
@@ -397,7 +397,7 @@ function Stake() {
                         {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
-                          <>{nextRewardValue} SB</>
+                          <>{nextRewardValue} KNOX</>
                         )}
                       </p>
                     </div>
