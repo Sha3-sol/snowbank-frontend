@@ -5,6 +5,7 @@ import {
   TimeTokenContract,
   MemoTokenContract,
   StakingContract,
+  MimTokenContract,
 } from "../../abi";
 import {
   clearPendingTxn,
@@ -59,6 +60,11 @@ export const changeApproval = createAsyncThunk(
       MemoTokenContract,
       signer
     );
+    const aKNOXContract = new ethers.Contract(
+      addresses.AKNOX_ADDRESS,
+      MimTokenContract,
+      signer
+    );
 
     let approveTx;
     try {
@@ -78,6 +84,16 @@ export const changeApproval = createAsyncThunk(
           ethers.constants.MaxUint256,
           { gasPrice }
         );
+      }
+
+      if (token === "aKNOX") {
+        console.log(aKNOXContract);
+        approveTx = await aKNOXContract.approve(
+          addresses.AKNOX_ADDRESS,
+          ethers.constants.MaxUint256,
+          { gasPrice }
+        );
+        console.log("on a signé");
       }
 
       const text = "Approve " + (token === "sb" ? "Staking" : "Unstaking");

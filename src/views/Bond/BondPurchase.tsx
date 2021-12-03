@@ -152,7 +152,7 @@ function BondPurchase({
     setZapinOpen(false);
   };
 
-  const displayUnits = useAvax ? "AVAX" : bond.displayUnits;
+  const displayUnits = useAvax ? "FTM" : bond.displayUnits;
 
   return (
     <Box display="flex" flexDirection="column">
@@ -170,7 +170,7 @@ function BondPurchase({
                 checked={useAvax}
                 onClick={() => setUseAvax(!useAvax)}
               />
-              <p>Use AVAX</p>
+              <p>Use FTM</p>
             </div>
           </FormControl>
         )}

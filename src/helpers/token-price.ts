@@ -7,7 +7,7 @@ export const loadTokenPrices = async () => {
     "https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2,olympus,magic-internet-money,snowdog&vs_currencies=usd";
   const { data } = await axios.get(url);
 
-  cache["AVAX"] = data["avalanche-2"].usd;
+  cache["FTM"] = data["avalanche-2"].usd;
   cache["MIM"] = data["magic-internet-money"].usd;
   cache["OHM"] = data["olympus"].usd;
   cache["SDOG"] = data["snowdog"].usd;

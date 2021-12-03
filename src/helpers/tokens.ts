@@ -56,7 +56,7 @@ export interface IToken {
 }
 
 export const avax: IToken = {
-  name: "AVAX",
+  name: "FTM",
   isAvax: true,
   img: AvaxIcon,
   address: "",
@@ -351,7 +351,7 @@ const vso: IToken = {
 };
 
 export const wavax: IToken = {
-  name: "WAVAX",
+  name: "WFTM",
   address: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
   img: WavaxIcon,
   decimals: 18,

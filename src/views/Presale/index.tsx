@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   Box,
+  TextField,
 } from "@material-ui/core";
 import RebaseTimer from "../../components/RebaseTimer";
 import { trim } from "../../helpers";
@@ -49,6 +50,12 @@ function Presale() {
   const ssbBalance = useSelector<IReduxState, string>((state) => {
     return state.account.balances && state.account.balances.ssb;
   });
+  const aKNOXBalance = useSelector<IReduxState, string>((state) => {
+    return state.account.balances && state.account.balances.aKNOX;
+  });
+  const MIMBalance = useSelector<IReduxState, string>((state) => {
+    return state.account.balances && state.account.balances.MIM;
+  });
   const stakeAllowance = useSelector<IReduxState, number>((state) => {
     return state.account.staking && state.account.staking.sb;
   });
@@ -73,14 +80,17 @@ function Presale() {
 
   const setMax = () => {
     if (view === 0) {
-      setQuantity(sbBalance);
+      setQuantity(parseInt(MIMBalance) >= 1500 ? "1500" : MIMBalance);
     } else {
       setQuantity(ssbBalance);
     }
   };
 
   const onSeekApproval = async (token: string) => {
-    if (await checkWrongNetwork()) return;
+    if (await checkWrongNetwork()) {
+      console.log("checkwrongnetwork");
+      return;
+    }
 
     await dispatch(
       changeApproval({ address, token, provider, networkID: chainID })
@@ -92,10 +102,7 @@ function Presale() {
     if (quantity === "" || parseFloat(quantity) === 0) {
       dispatch(
         warning({
-          text:
-            action === "stake"
-              ? messages.before_stake
-              : messages.before_unstake,
+          text: action === "buy" ? messages.no_amount : messages.before_unstake,
         })
       );
     } else {
@@ -116,6 +123,7 @@ function Presale() {
     (token) => {
       if (token === "sb") return stakeAllowance > 0;
       if (token === "ssb") return unstakeAllowance > 0;
+      if (token === "aKNOX") return 1;
       return 0;
     },
     [stakeAllowance]
@@ -129,6 +137,8 @@ function Presale() {
   const trimmedMemoBalance = trim(Number(ssbBalance), 6);
   const trimmedStakingAPY = trim(stakingAPY * 100, 1);
   const stakingRebasePercentage = trim(stakingRebase * 100, 4);
+
+  const [isApproved, setIsApproved] = useState<boolean>(false);
 
   return (
     <div className="presale-view">
@@ -198,11 +208,84 @@ function Presale() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <Typography variant="h5">Redeem $aKNOX for $KNOX</Typography>
+                <Typography variant="h5">Get Your Whitelist Tokens</Typography>
               </div>
             </Grid>
 
             <Grid item>
+              <div className="card-header">
+                <Typography variant="h6">Buy with MIM</Typography>
+              </div>
+            </Grid>
+
+            <div className="presale-stack">
+              <OutlinedInput
+                type="number"
+                style={{ width: "75%", marginRight: "5px" }}
+                placeholder="Amount"
+                className="stake-card-action-input"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                labelWidth={0}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <div
+                      onClick={setMax}
+                      className="stake-card-action-input-btn"
+                    >
+                      <p>Max</p>
+                    </div>
+                  </InputAdornment>
+                }
+              />
+              {address && hasAllowance("aKNOX") ? (
+                <Grid item style={{ width: "25%" }}>
+                  <Button
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "10px",
+                    }}
+                    className="buy-presale"
+                    variant="outlined"
+                    onClick={() => {
+                      if (isPendingTxn(pendingTransactions, "buy")) {
+                        console.log("buy");
+                        return;
+                      }
+                      onChangeStake("buy");
+                    }}
+                  >
+                    Buy
+                  </Button>
+                </Grid>
+              ) : (
+                <Grid item style={{ width: "25%" }}>
+                  <Button
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "10px",
+                    }}
+                    className="buy-presale"
+                    variant="outlined"
+                    onClick={() => {
+                      if (
+                        isPendingTxn(pendingTransactions, "approve_staking")
+                      ) {
+                        console.log("inif");
+                        return;
+                      }
+                      onSeekApproval("aKNOX");
+                    }}
+                  >
+                    Approve
+                  </Button>
+                </Grid>
+              )}
+            </div>
+
+            {/*<Grid item>
               <div className="stake-top-metrics">
                 <Grid
                   container
@@ -252,7 +335,7 @@ function Presale() {
                   </Grid>
                 </Grid>
               </div>
-            </Grid>
+            </Grid>*/}
           </Grid>
         </Box>
       </Zoom>

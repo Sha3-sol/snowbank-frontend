@@ -63,7 +63,7 @@ function SnowbankMenu() {
         <p>KNOX</p>
       </div>
 
-      <Popper
+      {/*<Popper
         className="sb-menu-popper"
         open={open}
         anchorEl={anchorEl}
@@ -102,7 +102,7 @@ function SnowbankMenu() {
             </div>
           </Fade>
         )}
-      </Popper>
+              </Popper>*/}
     </div>
   );
 }

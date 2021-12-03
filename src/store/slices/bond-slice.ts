@@ -145,7 +145,7 @@ export const calcBondDetails = createAsyncThunk(
       bondPrice = await bondContract.bondPriceInUSD();
 
       if (bond.name === avaxSb.name) {
-        const avaxPrice = getTokenPrice("AVAX");
+        const avaxPrice = getTokenPrice("FTM");
         bondPrice = bondPrice * avaxPrice;
       }
 
@@ -199,12 +199,12 @@ export const calcBondDetails = createAsyncThunk(
       purchased = (markdown / Math.pow(10, 18)) * (purchased / Math.pow(10, 9));
 
       if (bond.name === avaxSb.name) {
-        const avaxPrice = getTokenPrice("AVAX");
+        const avaxPrice = getTokenPrice("FTM");
         purchased = purchased * avaxPrice;
       }
     } else if (bond.name === wavax.name) {
       purchased = purchased / Math.pow(10, 18);
-      const avaxPrice = getTokenPrice("AVAX");
+      const avaxPrice = getTokenPrice("FTM");
       purchased = purchased * avaxPrice;
     } else {
       purchased = purchased / Math.pow(10, 18);

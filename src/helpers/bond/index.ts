@@ -24,7 +24,7 @@ export const mim = new StableBond({
   bondContractABI: StableBondContract,
   reserveContractAbi: StableReserveContract,
   networkAddrs: {
-    [Networks.AVAX]: {
+    [Networks.FTM]: {
       bondAddress: "0x587bc7775f88d9A190aa02D30f7dF2C9Bb183F5D",
       reserveAddress: "0x130966628846BFd36ff31a822705796e8cb8C18D",
     },
@@ -33,13 +33,13 @@ export const mim = new StableBond({
 
 export const wavax = new CustomBond({
   name: "wavax",
-  displayName: "wAVAX",
-  bondToken: "AVAX",
+  displayName: "wFTM",
+  bondToken: "FTM",
   bondIconSvg: AvaxIcon,
   bondContractABI: WavaxBondContract,
   reserveContractAbi: StableReserveContract,
   networkAddrs: {
-    [Networks.AVAX]: {
+    [Networks.FTM]: {
       bondAddress: "0x472c18c4079eCb68629F4FbA1141172404BFEE9C",
       reserveAddress: "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
     },
@@ -54,7 +54,7 @@ export const mimSb = new LPBond({
   bondContractABI: LpBondContract,
   reserveContractAbi: LpReserveContract,
   networkAddrs: {
-    [Networks.AVAX]: {
+    [Networks.FTM]: {
       bondAddress: "0x90A08fdF9f433954930f19E97FE9A1B0bDBf5C5f",
       reserveAddress: "0x425c45adfb53861e5db8f17d9b072ab60d4404d8",
     },
@@ -71,7 +71,7 @@ export const mimSdog = new LPBond({
   bondContractABI: LpBondContract,
   reserveContractAbi: LpReserveContract,
   networkAddrs: {
-    [Networks.AVAX]: {
+    [Networks.FTM]: {
       bondAddress: "0x0d71d9616f6844f12f1ce1516aa67817754517ff",
       reserveAddress: "0xa3f1f5076499ec37d5bb095551f85ab5a344bb58",
     },
@@ -82,19 +82,19 @@ export const mimSdog = new LPBond({
 
 export const avaxSb = new CustomLPBond({
   name: "avax_sb_lp",
-  displayName: "SB-AVAX LP",
-  bondToken: "AVAX",
+  displayName: "SB-FTM LP",
+  bondToken: "FTM",
   bondIconSvg: AvaxSbIcon,
   bondContractABI: LpBondContract,
   reserveContractAbi: LpReserveContract,
   networkAddrs: {
-    [Networks.AVAX]: {
+    [Networks.FTM]: {
       bondAddress: "0x288e6d7f4935c1f4d2862715306d4bdf8dea6592",
       reserveAddress: "0xa3d2cfe49df9d1ea0dc589b69252e1eddc417d6d",
     },
   },
   lpUrl:
-    "https://traderjoexyz.com/#/pool/AVAX/0x7d1232b90d3f809a54eeaeebc639c62df8a8942f",
+    "https://traderjoexyz.com/#/pool/FTM/0x7d1232b90d3f809a54eeaeebc639c62df8a8942f",
 });
 
 export default [mim, wavax, mimSb, avaxSb, mimSdog];
