@@ -36,12 +36,19 @@ interface IChangeApproval {
   provider: StaticJsonRpcProvider | JsonRpcProvider;
   address: string;
   networkID: Networks;
+  setVerifiedTransaction?: (isVerified: boolean) => void;
 }
 
 export const changeApproval = createAsyncThunk(
   "stake/changeApproval",
   async (
-    { token, provider, address, networkID }: IChangeApproval,
+    {
+      token,
+      provider,
+      address,
+      networkID,
+      setVerifiedTransaction,
+    }: IChangeApproval,
     { dispatch }
   ) => {
     if (!provider) {
@@ -63,6 +70,11 @@ export const changeApproval = createAsyncThunk(
     );
     const aKNOXContract = new ethers.Contract(
       addresses.AKNOX_ADDRESS,
+      MimTokenContract,
+      signer
+    );
+    const MIMContract = new ethers.Contract(
+      addresses.MIM_ADDRESS,
       MimTokenContract,
       signer
     );
@@ -88,13 +100,19 @@ export const changeApproval = createAsyncThunk(
       }
 
       if (token === "aKNOX") {
-        console.log(aKNOXContract);
         approveTx = await aKNOXContract.approve(
-          addresses.AKNOX_ADDRESS,
+          addresses.PRESALE_ADDRESS,
           ethers.constants.MaxUint256,
           { gasPrice }
         );
-        console.log("on a signé");
+      }
+
+      if (token === "MIM") {
+        approveTx = await MIMContract.approve(
+          addresses.PRESALE_ADDRESS,
+          ethers.constants.MaxUint256,
+          { gasPrice }
+        );
       }
 
       const text = "Approve " + (token === "sb" ? "Staking" : "Unstaking");
@@ -110,6 +128,9 @@ export const changeApproval = createAsyncThunk(
       );
       await approveTx.wait();
       dispatch(success({ text: messages.tx_successfully_send }));
+      if (setVerifiedTransaction) {
+        setVerifiedTransaction(true);
+      }
     } catch (err: any) {
       return metamaskErrorWrap(err, dispatch);
     } finally {
@@ -159,9 +180,7 @@ export const changeStake = createAsyncThunk(
       return;
     }
     const addresses = getAddresses(networkID);
-    console.log(addresses.PRESALE_ADDRESS);
     const signer = provider.getSigner();
-    console.log(signer);
     const staking = new ethers.Contract(
       addresses.STAKING_ADDRESS,
       StakingContract,
@@ -172,7 +191,6 @@ export const changeStake = createAsyncThunk(
       PresaleContract,
       signer
     );
-    console.log(buying);
     const stakingHelper = new ethers.Contract(
       addresses.STAKING_HELPER_ADDRESS,
       StakingHelperContract,
@@ -192,7 +210,7 @@ export const changeStake = createAsyncThunk(
         );
       } else if (action === "buy") {
         stakeTx = await buying.buySomeToken(
-          ethers.utils.parseUnits(value, "gwei")
+          ethers.utils.parseUnits(value, "ether")._hex
         );
       } else {
         stakeTx = await staking.unstake(
@@ -201,12 +219,19 @@ export const changeStake = createAsyncThunk(
           { gasPrice }
         );
       }
-      const pendingTxnType = action === "stake" ? "staking" : "unstaking";
+
+      const pendingTxnType = (action: string) => {
+        if (action === "stake") return "staking";
+        if (action === "buy") return "buying";
+        else return "unstaking";
+      };
+
+      //const pendingTxnType = action === "stake" ? "staking" : "unstaking";
       dispatch(
         fetchPendingTxns({
           txnHash: stakeTx.hash,
           text: getStakingTypeText(action),
-          type: pendingTxnType,
+          type: pendingTxnType(action),
         })
       );
       await stakeTx.wait();

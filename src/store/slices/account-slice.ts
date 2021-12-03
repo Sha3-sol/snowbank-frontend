@@ -45,7 +45,6 @@ export const getBalances = createAsyncThunk(
     provider,
   }: IGetBalances): Promise<IAccountBalances> => {
     const addresses = getAddresses(networkID);
-    console.log("je suis appelé");
     const ssbContract = new ethers.Contract(
       addresses.SSB_ADDRESS,
       MemoTokenContract,
@@ -64,9 +63,7 @@ export const getBalances = createAsyncThunk(
       TimeTokenContract,
       provider
     );
-    console.log(MIMContract);
     const MIMBalance = await MIMContract.balanceOf(address);
-    console.log(MIMBalance);
 
     const aKNOXContract = new ethers.Contract(
       addresses.AKNOX_ADDRESS,
