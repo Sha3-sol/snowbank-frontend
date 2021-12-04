@@ -275,7 +275,7 @@ function Presale() {
                       onSeekApproval("MIM");
                     }}
                   >
-                    Approve
+                    <Typography className="buy-presale">Approve</Typography>
                   </Button>
                 </Grid>
               )}
