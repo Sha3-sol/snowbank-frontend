@@ -167,38 +167,30 @@ function Presale() {
                 >
                   <Grid item style={{ width: "100%" }} xs={12}>
                     <div className="presale-stack">
-                      <Typography variant="h5" color="textSecondary">
-                        Token will be sent to presale participants on launch day
-                      </Typography>
-                      <Typography variant="h5"></Typography>
-                    </div>
-                  </Grid>
-
-                  <Grid item style={{ width: "100%" }} xs={12}>
-                    <div className="presale-stack">
-                      <Typography variant="h5" color="textSecondary">
+                      <Typography variant="h6" color="textSecondary">
                         Maximum Participants
                       </Typography>
-                      <Typography variant="h5">60</Typography>
+                      <Typography variant="h6">60</Typography>
                     </div>
                   </Grid>
 
                   <Grid item style={{ width: "100%" }} xs={12}>
                     <div className="presale-stack">
-                      <Typography variant="h5" color="textSecondary">
+                      <Typography variant="h6" color="textSecondary">
                         Maximum Allocation
                       </Typography>
-                      <Typography variant="h5">$ 1500 in MIM</Typography>
+                      <Typography variant="h6">$ 1500 in MIM</Typography>
                     </div>
                   </Grid>
 
                   <Grid item style={{ width: "100%" }} xs={12}>
                     <div className="presale-stack">
-                      <Typography variant="h5" color="textSecondary">
+                      <Typography variant="h6" color="textSecondary">
                         Vesting
                       </Typography>
-                      <Typography variant="h5">
-                        20% release on the day of the launch then 8% per day
+                      <Typography variant="h6">
+                        20% will be available on the day of the launch and then
+                        8% per day
                       </Typography>
                     </div>
                   </Grid>

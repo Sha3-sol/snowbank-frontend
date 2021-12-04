@@ -60,7 +60,7 @@ function SnowbankMenu() {
       onMouseLeave={(e) => handleClick(e)}
     >
       <div className="sb-menu-btn">
-        <p>KNOX</p>
+        <p>$KNOX</p>
       </div>
 
       {/*<Popper
