@@ -205,7 +205,7 @@ function Presale() {
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
-                <Typography variant="h5">Get Your Whitelist Tokens</Typography>
+                <Typography variant="h5">Get Presale Tokens</Typography>
               </div>
             </Grid>
 
