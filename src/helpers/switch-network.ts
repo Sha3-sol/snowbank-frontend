@@ -3,7 +3,7 @@ import { Networks } from "../constants/blockchain";
 const switchRequest = () => {
   return window.ethereum.request({
     method: "wallet_switchEthereumChain",
-    params: [{ chainId: "4002" }],
+    params: [{ chainId: "250" }],
   });
 };
 
@@ -12,7 +12,7 @@ const addChainRequest = () => {
     method: "wallet_addEthereumChain",
     params: [
       {
-        chainId: "4002",
+        chainId: "250",
         chainName: "Fantom Opera",
         rpcUrls: ["https://rpc.ftm.tools/"],
         blockExplorerUrls: ["https://ftmscan.com/"],
