@@ -179,7 +179,7 @@ function Presale() {
                       <Typography variant="h5" color="textSecondary">
                         Maximum Participants
                       </Typography>
-                      <Typography variant="h5">50</Typography>
+                      <Typography variant="h5">60</Typography>
                     </div>
                   </Grid>
 
